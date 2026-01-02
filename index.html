@@ -11,7 +11,7 @@
       background-color: #f4f6f8;
       margin: 0;
       height: 100vh;
-      display: flex ;
+      display: flex;
       justify-content: center;
       align-items: center;
     }
@@ -38,7 +38,7 @@
 
 <body>
   <div class="card">
-    <h1>Project Status – Student Learning Project</h1>
+    <h1 id="projectTitle">Project Status – Student Learning Project</h1>
 
     <p>
       This project repository is currently unavailable as it is being reviewed
@@ -46,7 +46,7 @@
     </p>
 
     <p>
-      This is developed as part of continuous learning
+      This is a student-level project developed as part of continuous learning
       and academic practice. The implementation may be partial or evolving, as
       improvements are made while learning new concepts and best practices.
     </p>
@@ -58,5 +58,15 @@
 
     <p><strong>Thank you for your understanding.</strong></p>
   </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const projectName = params.get("project");
+
+    if (projectName) {
+      document.getElementById("projectTitle").innerText =
+        "Project Status – " + projectName;
+    }
+  </script>
 </body>
 </html>
