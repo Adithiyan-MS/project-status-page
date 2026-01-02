@@ -19,7 +19,7 @@
     .card {
       background-color: #ffffff;
       padding: 32px;
-      max-width: 600px;
+      max-width: 620px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
@@ -33,27 +33,38 @@
       line-height: 1.6;
       margin-bottom: 12px;
     }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background-color: #eef2f7;
+      font-size: 14px;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
   <div class="card">
+    <div class="tag" id="linkTypeTag">Project Link</div>
+
     <h1 id="projectTitle">Project Status – Student Learning Project</h1>
 
-    <p>
-      This project repository is currently unavailable as it is being reviewed
+    <p id="statusText">
+      This project link is currently unavailable as it is being reviewed
       and reorganized.
     </p>
 
     <p>
       This is a student-level project developed as part of continuous learning
-      and academic practice. The implementation may be partial or evolving, as
-      improvements are made while learning new concepts and best practices.
+      and academic practice. The implementation may be partial or evolving.
     </p>
 
     <p>
-      The source code will be re-published once the current learning iteration
-      and refinement process is complete.
+      The repository or demo will be made available once the current learning
+      iteration and refinement process is complete.
     </p>
 
     <p><strong>Thank you for your understanding.</strong></p>
@@ -61,11 +72,24 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const projectName = params.get("project");
+    const project = params.get("project");
+    const type = params.get("type");
 
-    if (projectName) {
+    if (project) {
       document.getElementById("projectTitle").innerText =
-        "Project Status – " + projectName;
+        "Project Status – " + project;
+    }
+
+    if (type === "demo") {
+      document.getElementById("linkTypeTag").innerText = "Live Demo";
+      document.getElementById("statusText").innerText =
+        "The live demo for this project is currently unavailable as it is being updated or redeployed.";
+    }
+
+    if (type === "repo") {
+      document.getElementById("linkTypeTag").innerText = "Source Code";
+      document.getElementById("statusText").innerText =
+        "The source code repository for this project is currently unavailable as it is being reviewed and reorganized.";
     }
   </script>
 </body>
